@@ -23,6 +23,15 @@ chatForm.addEventListener("submit", async (e) => {
     content: userInput.value,
   });
 
+  // Show loading animation and text while waiting for AI response
+  responseContainer.innerHTML = `
+    <span class="thinking-dots">
+      Thinking
+      <span class="spinner"></span>
+      <span class="dot">.</span><span class="dot">.</span><span class="dot">.</span>
+    </span>
+  `;
+
   // Send a POST request to the OpenAI API
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST", // We are POST-ing data to the API

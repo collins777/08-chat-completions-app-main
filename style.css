@@ -3,7 +3,7 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif; /* Use Inter for body text */
+  font-family: "Inter", sans-serif; /* Use Inter for body text */
   margin: 0;
   padding-top: 40px;
   padding-bottom: 20px;
@@ -16,13 +16,13 @@ body {
   width: 95%;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   padding: 20px;
   text-align: center;
 }
 
 h1 {
-  font-family: 'Poppins', sans-serif; /* Use Poppins for headings */
+  font-family: "Poppins", sans-serif; /* Use Poppins for headings */
   color: #00796b; /* Teal color for headings */
   margin: 0;
   font-size: 38px;
@@ -57,7 +57,7 @@ button {
   border-radius: 6px;
   cursor: pointer;
   transition: background 0.3s;
-  font-family: 'Poppins', sans-serif; /* Use Poppins for buttons */
+  font-family: "Poppins", sans-serif; /* Use Poppins for buttons */
 }
 
 button:hover {
@@ -73,4 +73,57 @@ button:hover {
   white-space: pre-wrap; /* Preserve line breaks and spacing */
   background-color: #e6f9f8; /* Light teal background for response */
   box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.1); /* Soft inner shadow */
+}
+
+/* Add animation for thinking dots */
+.thinking-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.thinking-dots .dot {
+  opacity: 0;
+  animation: blink 1.2s infinite;
+}
+.thinking-dots .dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.thinking-dots .dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+.thinking-dots .dot:nth-child(4) {
+  animation-delay: 0.6s;
+}
+
+/* Spinner styles */
+.spinner {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  border: 3px solid #00796b;
+  border-top: 3px solid #b2dfdb;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-left: 6px;
+  margin-right: 2px;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
