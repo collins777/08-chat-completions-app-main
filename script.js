@@ -33,30 +33,37 @@ chatForm.addEventListener("submit", async (e) => {
   `;
 
   // Send a POST request to the OpenAI API
-  const response = await fetch("https://api.openai.com/v1/chat/completions", {
-    method: "POST", // We are POST-ing data to the API
-    headers: {
-      "Content-Type": "application/json", // Set the content type to JSON
-      Authorization: `Bearer ${apiKey}`, // Include the API key for authorization
-    },
-    // Send model details and conversation history
-    body: JSON.stringify({
-      model: "gpt-4o",
-      messages: messages,
-    }),
-  });
+  let result;
+  try {
+    const response = await fetch("https://api.openai.com/v1/chat/completions", {
+      method: "POST", // We are POST-ing data to the API
+      headers: {
+        "Content-Type": "application/json", // Set the content type to JSON
+        Authorization: `Bearer ${apiKey}`, // Include the API key for authorization
+      },
+      // Send model details and conversation history
+      body: JSON.stringify({
+        model: "gpt-4o",
+        messages: messages,
+      }),
+    });
 
-  // Parse and store the response data
-  const result = await response.json();
+    result = await response.json();
 
-  // Add the AI's reply to the conversation history
-  messages.push({
-    role: "assistant",
-    content: result.choices[0].message.content,
-  });
+    // Add the AI's reply to the conversation history
+    messages.push({
+      role: "assistant",
+      content: result.choices[0].message.content,
+    });
 
-  // Display the AI's reply on the page, preserving line breaks
-  responseContainer.textContent = result.choices[0].message.content;
+    // Display the AI's reply on the page, preserving line breaks
+    responseContainer.textContent = result.choices[0].message.content;
+  } catch (error) {
+    // Log the error and show a user-friendly message
+    console.error("API error:", error);
+    responseContainer.textContent =
+      "Sorry, something went wrong. Please try again.";
+  }
 
   // clear user input on submit
   userInput.value = "";
